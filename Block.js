@@ -1,8 +1,7 @@
 
 
-
+// https://www.npmjs.com/package/crypto-js
 const SHA256 = require('crypto-js/sha256');
-
 
 
 class Block{
