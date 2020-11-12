@@ -1,6 +1,7 @@
 
 
 const Block = require('./Block');
+const Transaction = require('./Transaction');
 
 
 class Blockchain {
@@ -8,6 +9,7 @@ class Blockchain {
         this.chain = [
             this.crearBloqueGenesis()
         ];
+        this.transaccionesPendientes = [];
     }
 
     crearBloqueGenesis(){
@@ -23,6 +25,21 @@ class Blockchain {
         //newBlock.hash = newBlock.calcularHash();
         newBlock.minarBloque(2);
         this.chain.push(newBlock);
+    }
+
+    agregarTransaccion(transaction){
+        this.transaccionesPendientes.push(transaction);
+    }
+
+    minarTransaccionesPendientes(minero){
+        const block = new Block(new Date(), this.transaccionesPendientes);
+        block.previousHash = this.obtenerUltimoBloque().hash;
+        block.minarBloque(2);
+        console.log('Se han minado las transacciones pendientes');
+        this.chain.push(block);
+        this.transaccionesPendientes = [
+            new Transaction(null, minero, 100)
+        ];
     }
 
     validarCadena(){
