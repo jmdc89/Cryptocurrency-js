@@ -61,6 +61,21 @@ class Blockchain {
         return true;
     }
 
+    getBalance(direccion){
+        let result = 0;
+        for(let block of this.chain){
+            for(let transaction of block.transactions){
+                if (transaction.fromAddress === direccion){
+                    result -= transaction.amount;
+                }
+                if (transaction.toAddress === direccion){
+                    result += transaction.amount;
+                }
+            }
+        }
+        return result;
+    }
+
 }
 
 module.exports = Blockchain;

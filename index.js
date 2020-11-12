@@ -16,3 +16,5 @@ jmdCoin.agregarTransaccion(new Transaction('personaB', 'personaA', 100));
 jmdCoin.minarTransaccionesPendientes('jose');
 
 console.log(JSON.stringify(jmdCoin, null, 4));
+
+console.log(jmdCoin.getBalance('jose'));
