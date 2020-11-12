@@ -23,6 +23,27 @@ class Blockchain {
         newBlock.hash = newBlock.calcularHash();
         this.chain.push(newBlock);
     }
+
+    validarCadena(){
+        for(let i = 1; i<this.chain.length; i++){
+            const bloqueActual = this.chain[i];
+            const bloqueAnterior = this.chain[i-1];
+
+            // Comprobacion del hash
+            if(bloqueActual.hash != bloqueActual.calcularHash()){
+                return false;
+            }
+
+            //Si el hash previo coindice
+            if(bloqueActual.previousHash != bloqueAnterior.hash){
+                return false;
+            }
+
+        }
+
+        return true;
+    }
+
 }
 
 module.exports = Blockchain;
