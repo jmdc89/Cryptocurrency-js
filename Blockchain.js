@@ -20,7 +20,8 @@ class Blockchain {
 
     agregarBloque(newBlock){
         newBlock.previousHash = this.obtenerUltimoBloque().hash;
-        newBlock.hash = newBlock.calcularHash();
+        //newBlock.hash = newBlock.calcularHash();
+        newBlock.minarBloque(2);
         this.chain.push(newBlock);
     }
 
@@ -38,7 +39,6 @@ class Blockchain {
             if(bloqueActual.previousHash != bloqueAnterior.hash){
                 return false;
             }
-
         }
 
         return true;
